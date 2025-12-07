@@ -28,6 +28,100 @@ app.listen(port, () => {
 	console.log("Server is listening to port " + port);
 });
 
+const isAuth = (req) => {
+	try {
+		return !!jwt.verify(req.cookies.jwt, secret);
+	} catch {
+		return false;
+	}
+};
+
+app.post("/post", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+	}
+
+	const body = req.body.postBody;
+	try {
+		await pool.query("INSERT INTO posts(body) values ($1)", [body]);
+		res.status(201).send("created");
+	} catch (e) {
+		res.status(500).send("server error");
+		return;
+	}
+});
+
+app.get("/post", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+	}
+
+	const posts = await pool.query("SELECT * FROM posts");
+	res.json(posts.rows);
+});
+
+app.get("/post/:uuid", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+		return;
+	}
+
+	const uuid = req.params.uuid;
+	try {
+		const post = await pool.query("SELECT * FROM posts WHERE id = $1", [uuid]);
+		res.json(post.rows);
+		return;
+	} catch (e) {
+		res.status(500).send("server error");
+		return;
+	}
+});
+
+app.put("/post/:uuid", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+	}
+
+	const uuid = req.params.uuid;
+	const body = req.body.postBody;
+	try {
+		await pool.query("UPDATE posts SET body = $2 WHERE id = $1", [uuid, body]);
+		res.status(204).send("updated");
+	} catch (e) {
+		res.status(500).send("server error");
+		return;
+	}
+});
+
+app.delete("/post", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+	}
+
+	try {
+		await pool.query("DELETE FROM posts");
+		res.status(204).send("deleted");
+	} catch (e) {
+		res.status(500).send("server error");
+		return;
+	}
+});
+
+app.delete("/post/:uuid", async (req, res) => {
+	if (!isAuth(req)) {
+		res.status(401).send("unauthorized");
+	}
+
+	const uuid = req.params.uuid;
+	try {
+		await pool.query("DELETE FROM posts WHERE id = $1", [uuid]);
+		res.status(204).send("deleted");
+	} catch (e) {
+		res.status(500).send("server error");
+		return;
+	}
+});
+
 // is used to check whether a user is authinticated
 app.get("/auth/authenticate", async (req, res) => {
 	console.log("authentication request has been arrived");
