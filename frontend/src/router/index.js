@@ -39,6 +39,36 @@ const routes = [{
         component: () =>
             import ( /* webpackChunkName: "about" */ "../views/AboutView.vue"),
     },
+    {
+        path: "/add",
+        name: "AddPost",
+        component: () => 
+            import ("../views/AddPostView"),
+        beforeEnter: async(to, from, next) => {
+            let authResult = await auth.authenticated();
+            if (!authResult) {
+                next('/login')
+            } else {
+                next();
+            }
+        }
+    },
+    {
+        path: "/update/:id",
+        name: "UpdatePost",
+        props: true,
+        component: () => {
+            import ("../views/UpdatePostView")
+        },
+        beforeEnter: async(to, from, next) => {
+            let authResult = await auth.authenticated();
+            if (!authResult) {
+                next('/login')
+            } else {
+                next();
+            }
+        }    
+    }
 ];
 
 const router = createRouter({

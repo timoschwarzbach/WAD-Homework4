@@ -3,12 +3,17 @@
     <div class="container">
     <button v-if = "authResult" @click="Logout" class="center">Logout</button>
     </div>
-    <div class="post-list" v-for="post in posts"   :key="post.index">  
-      <div class="post">
+    <div class="post-list" v-for="post in posts"   :key="post.id">  
+      <div class="post" @click="updatePost(post.id)" >
           <h3>  Title:  {{post.title}} </h3>
+          <p>{{ post.id }}</p>
           <p>  <b> Body: </b> {{post.body}} </p>
       </div>
     </div>
+  </div>
+  <div class="actions">
+    <router-link to="/add">Add post</router-link>
+    <button @click="deleteAll" v-if="posts.length > 0" >Delete all</button>
   </div>
 </template>
 
@@ -44,9 +49,20 @@ export default {
         console.log("error logout");
       });
     },
+    deleteAll() {
+      fetch("http://localhost:3000/post", {
+        method: "DELETE",
+        credentials: "include"
+      })
+    },
+    updatePost(id) {
+      this.$router.push("/update/" + id)
+    }
   }, 
   mounted() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('http://localhost:3000/post', {
+          credentials: "include"
+        })
         .then((response) => response.json())
         .then(data => this.posts = data)
         .catch(err => console.log(err.message))
@@ -116,6 +132,14 @@ nav{
   display: flex;
   align-items: center;
 }
+
+.actions {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  
+}
+
 .post {
     width: 80%;
     position: relative;
