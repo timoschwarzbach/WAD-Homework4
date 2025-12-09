@@ -8,6 +8,9 @@
 				<h3>Title: {{ post.title }}</h3>
 				<p>{{ post.id }}</p>
 				<p><b> Body: </b> {{ post.body }}</p>
+				<p>
+					<b> Created: </b> {{ new Date(post.created_at).toLocaleString() }}
+				</p>
 			</div>
 		</div>
 	</div>
