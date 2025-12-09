@@ -66,7 +66,12 @@ export default {
 			credentials: "include",
 		})
 			.then((response) => response.json())
-			.then((data) => (this.posts = data))
+			.then(
+				(data) =>
+					(this.posts = data.sort((a, b) =>
+						b.created_at.localeCompare(a.created_at)
+					))
+			)
 			.catch((err) => console.log(err.message));
 	},
 };
