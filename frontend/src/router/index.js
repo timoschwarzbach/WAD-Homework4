@@ -51,7 +51,7 @@ const routes = [
 		},
 	},
 	{
-		path: "/update/:id",
+		path: "/post/:id",
 		name: "UpdatePost",
 		props: true,
 		component: () => import("../views/UpdatePostView"),

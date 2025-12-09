@@ -69,7 +69,7 @@ app.get("/post/:uuid", async (req, res) => {
 	const uuid = req.params.uuid;
 	try {
 		const post = await pool.query("SELECT * FROM posts WHERE id = $1", [uuid]);
-		res.json(post.rows);
+		res.json(post.rows[0]);
 		return;
 	} catch (e) {
 		res.status(500).send("server error");
