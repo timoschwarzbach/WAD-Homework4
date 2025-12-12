@@ -1,12 +1,28 @@
 <template>
   <div class="form">
-    <h3>LogIn</h3>
-    <label for="email">Email</label>
-    <input type="email" name="email" required v-model="email" />
-    <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password" />
+    <div class="input_area">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        v-model="email"
+      />
+    </div>
+    <div class="input_area">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        v-model="password"
+      />
+    </div>
     <div class="container">
-      <button @click="LogIn" class="center">LogIn</button>
+      <button @click="LogIn" class="center">Login</button>
+      <label>Or</label>
       <button @click="this.$router.push('/signup')" class="center">
         Signup
       </button>
@@ -56,54 +72,53 @@ export default {
 
 <style scoped>
 .form {
-  max-width: 420px;
-  margin: 30px auto;
-  background: rgb(167, 154, 154);
-  text-align: left;
-  padding: 40px;
-  border-radius: 10px;
-}
-h3 {
-  text-align: center;
-  color: rgb(8, 110, 110);
-}
-label {
-  color: rgb(8, 110, 110);
-  display: inline-block;
-  margin: 25px 0 15px;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-input {
-  display: block;
-  padding: 10px 6px;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid white;
-  color: blue;
-}
-button {
-  background: rgb(8, 110, 110);
-  border: 0;
-  padding: 10px 20px;
-  margin: 20px 20px 20px 20px;
-  color: white;
-  border-radius: 20px;
-  align-items: center;
-  text-align: center;
-}
-.center {
-  margin: auto;
-  border: 0;
-  padding: 10px 20px;
-  margin-top: 20px;
-  width: 30%;
-}
-.container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ecf1e2;
+  border-radius: 12px;
+  max-width: 300px;
+  padding: 4px;
+  margin: 0 auto;
+}
+
+.form > label {
+  padding: 10px 0;
+}
+
+input {
+  background-color: ghostwhite;
+  border: none;
+  border-radius: 12px;
+  text-align: center;
+  margin: 5px;
+  padding: 10px 0;
+  resize: none;
+  width: 170px;
+  height: 12px;
+  overflow: hidden;
+}
+
+button {
+  background-color: cornflowerblue;
+  border-radius: 12px;
+  border: none;
+  padding: 6px 12px;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.input_area {
+  flex-direction: row;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input_area > label {
+  margin-right: 20px;
 }
 </style>
