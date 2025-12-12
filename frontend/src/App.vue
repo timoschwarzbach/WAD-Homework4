@@ -1,11 +1,12 @@
+<script setup>
+import FooterElement from "./components/FooterElement.vue";
+import HeaderElement from "./components/HeaderElement.vue";
+</script>
+
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <!--     <router-link to="/signup">SignUp</router-link> | -->
-    <!--     <router-link to="/login">LogIn</router-link> | -->
-    <router-link to="/about">About</router-link>
-  </nav>
+  <HeaderElement />
   <router-view />
+  <FooterElement />
 </template>
 
 <style>

@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: "AboutView",
+  name: "ContactsView",
 };
 </script>

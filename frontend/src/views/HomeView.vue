@@ -3,15 +3,20 @@
     <div class="container">
       <button v-if="authResult" @click="Logout" class="center">Logout</button>
     </div>
-    <div class="post-list" v-for="post in posts" :key="post.id">
-      <div class="post" @click="updatePost(post.id)">
-        <h3>Title: {{ post.title }}</h3>
-        <p>{{ post.id }}</p>
-        <p><b> Body: </b> {{ post.body }}</p>
-        <p>
-          <b> Created: </b> {{ new Date(post.created_at).toLocaleString() }}
-        </p>
-      </div>
+    <div
+      class="post"
+      @click="updatePost(post.id)"
+      v-for="post in posts"
+      :key="post.id"
+    >
+      <span>{{
+        new Date(post.created_at).toLocaleString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })
+      }}</span>
+      <p>{{ post.body }}</p>
     </div>
   </div>
   <div class="actions">
@@ -85,12 +90,7 @@ body {
   background: #fafafa;
   position: relative;
 }
-.post-list {
-  background: rgb(189, 212, 199);
-  margin-bottom: 5px;
-  padding: 3px 5px;
-  border-radius: 10px;
-}
+
 h3 {
   margin: 0;
   padding: 0;
@@ -98,9 +98,7 @@ h3 {
   color: #444;
   background: #7e9756;
 }
-p {
-  background: #796dbd;
-}
+
 h1,
 h2,
 h3,
@@ -158,21 +156,20 @@ nav {
 }
 
 .post {
-  width: 80%;
-  position: relative;
-  padding: 10px;
-  margin: 10px auto;
-  border: 1px solid gray;
-  text-align: left;
+  border-radius: 12px;
+  background-color: #d8d8d8;
+  padding: 4px;
+  margin: 12px 0;
+  max-width: 400px;
 }
-.center {
-  margin: auto;
-  border: 0;
-  padding: 10px 20px;
-  margin-top: 20px;
-  margin: 10px auto;
-  width: 30%;
+
+.post > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .container {
   display: flex;
   justify-content: center;
