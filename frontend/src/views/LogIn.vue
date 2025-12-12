@@ -2,33 +2,33 @@
   <div class="form">
     <h3>LogIn</h3>
     <label for="email">Email</label>
-    <input type="email" name="email"  required v-model="email">
+    <input type="email" name="email" required v-model="email" />
     <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password">
+    <input type="password" name="password" required v-model="password" />
     <div class="container">
-      <button @click="LogIn"  class="center">LogIn</button>
-      <button @click='this.$router.push("/signup")' class="center">Signup</button>
+      <button @click="LogIn" class="center">LogIn</button>
+      <button @click="this.$router.push('/signup')" class="center">
+        Signup
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-name: "LogIn", 
+  name: "LogIn",
 
-data: function() {
+  data: function () {
     return {
-   email: '',
-   password: '',
-  }
+      email: "",
+      password: "",
+    };
   },
   methods: {
-
-
-LogIn() {
+    LogIn() {
       var data = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       // using Fetch - post method - send an HTTP post request to the specified URI with the defined body
       fetch("http://localhost:3000/auth/login", {
@@ -36,23 +36,22 @@ LogIn() {
         headers: {
           "Content-Type": "application/json",
         },
-          credentials: 'include', //  Don't forget to specify this if you need cookies
-          body: JSON.stringify(data),
+        credentials: "include", //  Don't forget to specify this if you need cookies
+        body: JSON.stringify(data),
       })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      //this.$router.push("/");
-      location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          //this.$router.push("/");
+          location.assign("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error");
+        });
     },
-  }, 
-  }
-
+  },
+};
 </script>
 
 <style scoped>
@@ -101,7 +100,7 @@ button {
   border: 0;
   padding: 10px 20px;
   margin-top: 20px;
-  width: 30%; 
+  width: 30%;
 }
 .container {
   display: flex;
