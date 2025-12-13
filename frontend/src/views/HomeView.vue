@@ -3,24 +3,26 @@
     <div class="container">
       <button v-if="authResult" @click="Logout" class="center">Logout</button>
     </div>
-    <div
-      class="post"
-      @click="updatePost(post.id)"
-      v-for="post in posts"
-      :key="post.id"
-    >
-      <span>{{
-        new Date(post.created_at).toLocaleString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        })
-      }}</span>
-      <p>{{ post.body }}</p>
+    <div class="posts">
+      <div
+        class="post"
+        @click="updatePost(post.id)"
+        v-for="post in posts"
+        :key="post.id"
+      >
+        <span>{{
+          new Date(post.created_at).toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          })
+        }}</span>
+        <p>{{ post.body }}</p>
+      </div>
     </div>
   </div>
   <div class="actions">
-    <router-link to="/add">Add post</router-link>
+    <button @click="this.$router.push('/add')">Add post</button>
     <button @click="deleteAll" v-if="posts.length > 0">Delete all</button>
   </div>
 </template>
@@ -83,6 +85,11 @@ export default {
 </script>
 
 <style scoped>
+.posts {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 body {
   margin: 20px 40px;
   font-size: 1.2rem;
@@ -134,15 +141,12 @@ label {
   margin: 20px 0 10px;
 }
 button {
-  margin-top: 30px;
-  border-radius: 36px;
-  background: #fee996;
-  border: 0;
-  font-weight: 700;
-  font-size: 0.8em;
-  display: block;
-  padding: 10px 16px;
-  letter-spacing: 2px;
+  background-color: cornflowerblue;
+  border-radius: 12px;
+  border: none;
+  padding: 6px 12px;
+  font-size: 16px;
+  margin: 10px;
 }
 nav {
   display: flex;
