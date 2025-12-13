@@ -53,6 +53,18 @@ export default {
         }),
       }).then(() => location.assign("/"));
     },
+    deletePost: function () {
+      fetch(`http://localhost:3000/post/${this.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+        credentials: "include",
+        body: JSON.stringify({
+          postBody: this.postBody,
+        }),
+      }).then(() => location.assign("/"));
+    },
   },
   mounted() {
     fetch(`http://localhost:3000/post/${this.id}`, {
