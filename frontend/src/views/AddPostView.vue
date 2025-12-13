@@ -24,19 +24,21 @@ export default {
 </script>
 
 <template>
-  <div class="post_input">
-    <label for="post_input">Add Post</label>
-    <div class="input_area">
-      <label for="post_input">Body</label>
-      <textarea
-        name="fbody"
-        id="post_input"
-        placeholder="textarea"
-        required
-        v-model="postDesc"
-      ></textarea>
+  <div>
+    <div class="post_input">
+      <label for="post_input">Add Post</label>
+      <div class="input_area">
+        <label for="post_input">Body</label>
+        <textarea
+          name="fbody"
+          id="post_input"
+          placeholder="textarea"
+          required
+          v-model="postDesc"
+        ></textarea>
+      </div>
+      <input type="submit" id="submit_button" @click="addPost" value="Add" />
     </div>
-    <input type="submit" id="submit_button" @click="addPost" value="Add" />
   </div>
 </template>
 
@@ -79,7 +81,7 @@ textarea {
   padding: 10px 0;
   resize: none;
   width: 170px;
-  height: 12px;
+  height: 32px;
   overflow: hidden;
 }
 

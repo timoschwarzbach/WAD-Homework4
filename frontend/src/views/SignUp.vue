@@ -1,26 +1,28 @@
 <template>
-  <div class="form">
-    <div class="input_area">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        required
-        v-model="email"
-      />
+  <div>
+    <div class="form">
+      <div class="input_area">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          required
+          v-model="email"
+        />
+      </div>
+      <div class="input_area">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          v-model="password"
+        />
+      </div>
+      <button @click="SignUp" class="SignUp">SignUp</button>
     </div>
-    <div class="input_area">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        required
-        v-model="password"
-      />
-    </div>
-    <button @click="SignUp" class="SignUp">SignUp</button>
   </div>
 </template>
 
@@ -90,7 +92,7 @@ input {
   padding: 10px 0;
   resize: none;
   width: 170px;
-  height: 12px;
+  height: 32px;
   overflow: hidden;
 }
 

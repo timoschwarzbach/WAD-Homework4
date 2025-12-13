@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div>
     <div class="container">
       <button v-if="authResult" @click="Logout" class="center">Logout</button>
     </div>
@@ -20,10 +20,10 @@
         <p>{{ post.body }}</p>
       </div>
     </div>
-  </div>
-  <div class="actions">
-    <button @click="this.$router.push('/add')">Add post</button>
-    <button @click="deleteAll" v-if="posts.length > 0">Delete all</button>
+    <div class="actions">
+      <button @click="this.$router.push('/add')">Add post</button>
+      <button @click="deleteAll" v-if="posts.length > 0">Delete all</button>
+    </div>
   </div>
 </template>
 

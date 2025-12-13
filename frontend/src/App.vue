@@ -10,6 +10,14 @@ import HeaderElement from "./components/HeaderElement.vue";
 </template>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
+header + div {
+  min-height: calc(100vh - 192px);
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

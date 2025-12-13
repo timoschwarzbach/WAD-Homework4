@@ -1,29 +1,31 @@
 <template>
-  <div class="post_input">
-    <label for="post_input">A Post</label>
-    <div class="input_area">
-      <label for="post_input">Body</label>
-      <textarea
-        name="fbody"
-        id="post_input"
-        placeholder="textarea"
-        required
-        v-model="postBody"
-      ></textarea>
-    </div>
-    <div class="row">
-      <input
-        type="submit"
-        id="submit_button"
-        @click="updatePost"
-        value="Update"
-      />
-      <input
-        type="submit"
-        id="submit_button"
-        @click="deletePost"
-        value="Delete"
-      />
+  <div>
+    <div class="post_input">
+      <label for="post_input">A Post</label>
+      <div class="input_area">
+        <label for="post_input">Body</label>
+        <textarea
+          name="fbody"
+          id="post_input"
+          placeholder="textarea"
+          required
+          v-model="postBody"
+        ></textarea>
+      </div>
+      <div class="row">
+        <input
+          type="submit"
+          id="submit_button"
+          @click="updatePost"
+          value="Update"
+        />
+        <input
+          type="submit"
+          id="submit_button"
+          @click="deletePost"
+          value="Delete"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -119,7 +121,7 @@ textarea {
   padding: 10px 0;
   resize: none;
   width: 170px;
-  height: 12px;
+  height: 32px;
   overflow: hidden;
 }
 
