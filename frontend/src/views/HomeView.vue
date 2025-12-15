@@ -62,6 +62,8 @@ export default {
       fetch("http://localhost:3000/post", {
         method: "DELETE",
         credentials: "include",
+      }).then(() => {
+        this.posts = [];
       });
     },
     updatePost(id) {
