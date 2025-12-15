@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form">
+    <form class="form" @submit.prevent="LogIn">
       <div class="input_area">
         <label for="email">Email</label>
         <input
@@ -9,7 +9,7 @@
           placeholder="Email"
           required
           v-model="email"
-        />
+        >
       </div>
       <div class="input_area">
         <label for="password">Password</label>
@@ -19,16 +19,16 @@
           placeholder="Password"
           required
           v-model="password"
-        />
+        >
       </div>
       <div class="container">
-        <button @click="LogIn" class="center">Login</button>
+        <button type="submit" class="center">Login</button>
         <label>Or</label>
-        <button @click="this.$router.push('/signup')" class="center">
+        <button type="button" @click="this.$router.push('/signup')" class="center">
           Signup
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
 

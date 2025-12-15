@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form">
+    <form @submit.prevent="SignUp" class="form">
       <div class="input_area">
         <label for="email">Email</label>
         <input
@@ -21,8 +21,8 @@
           v-model="password"
         />
       </div>
-      <button @click="SignUp" class="SignUp">SignUp</button>
-    </div>
+      <button type="submit" class="SignUp">SignUp</button>
+    </form>
   </div>
 </template>
 
